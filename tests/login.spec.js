@@ -43,11 +43,13 @@ test('Deve acessar a conta do usuário', async ({ page }) => {
 
   await login.waitForChange()
 
-  //const {code} = await getJob()
+  const codigoredis = await getJob()
 
-  const codigo = await obterCodigo2FA(usuario.cpf)
+  const codigodb = await obterCodigo2FA(usuario.cpf)
+  
+  await login.informa2FA(codigoredis)
 
-  await login.informa2FA(code)
+  expect(codigoredis).toEqual(codigodb);
 
   await expect(await dash.obterSaldo()).toHaveText('R$ 5.000,00')
 
