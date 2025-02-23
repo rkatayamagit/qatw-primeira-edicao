@@ -22,7 +22,7 @@ export class loginPage {
 
     async waitForChange() {
         await this.page.getByRole('heading', { name: 'Verificação em duas etapas' })
-            .waitFor({ timeout: 3000 })
+            .waitFor({ timeout: 7000 })
     }
 
     async informa2FA(codigo) {
